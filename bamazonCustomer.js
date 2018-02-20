@@ -18,6 +18,7 @@ connection.connect(function(err) {
   customerPurchase();
 });
 
+//function to prompt customer for purchase
 function promptCustomer() {
   inquirer.prompt([
     //ask the user for the ID of the product they would like to buy
@@ -33,6 +34,7 @@ function promptCustomer() {
       }
     },
     //ask how many units of the product they would like to buy
+    //validate that their input is a valid number
     {
       type: "input",
       message: "Enter the quantity you'd like to buy: ",
@@ -45,7 +47,7 @@ function promptCustomer() {
       }
     }
   ]).then(function(response) {
-    console.log("Product ID: " + response.productID);
+  //Select the item requested from the database
     connection.query("SELECT * FROM products WHERE item_id=" + response.productID, function(err, res) {
       if (err) throw err;
 
@@ -76,7 +78,7 @@ function promptCustomer() {
   });
 }
 
-
+//Function to display the products for sale and prompt them to select one for purchase
 function customerPurchase() {
   console.log("==================PRODCUTS FOR SALE==========================");
   //Select all items available for sale in the database
