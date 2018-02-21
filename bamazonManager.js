@@ -189,11 +189,16 @@ function addNewProduct(){
   ]).then(function(response){
     let productName = response.productName;
     let department = response.department;
-    let price = parseFloat(response.price).toFixed(2);
+    let productPrice = parseFloat(response.price).toFixed(2);
     let quantity = parseInt(response.quantity);
-    connection.query("INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES ('"
-    + productName +"', '"+department+", "+price+", "+quantity+")", function(res, err){
-      if(err) throw err;
+    connection.query("INSERT INTO products SET ?",
+      {
+        product_name: productName,
+        department_name: department,
+        price: productPrice,
+        stock_quantity: quantity
+      },
+      function(res, err){
       console.log("Product Added");
       manageProducts();
     })
