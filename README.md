@@ -18,6 +18,7 @@ As long as there is enough in stock, the transaction will go through and show th
 
 ## MANAGER MODE  
 In manager mode, the user has 4 options
+
 ![bamazon manager main display](/images/manager_screenshot_1.png)
 
 ### View Product Inventory
